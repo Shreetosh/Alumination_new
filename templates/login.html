@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../static/css/login_styles.css">
+<div class="container">
+    <div class="title">Login</div>  
+    <div style="color: red; font-size: 20px; font-weight: bold;">{{message}}</div><br>
+    <form class="login-form" method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="user__details">
+        <div class="input__box">
+          <span class="details">Roll No.</span>
+          <input type="text" name="rollno" value="{{request.session.rollno}}" required>
+        </div>
+        {% if request.session.rollno %}
+        <div class="input__box">
+          <span class="details">OTP(Sent on your Email)</span>
+          <input type="text" name="otp" pattern="[0-9]{6}" required>
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="button">
+        <input type="submit" value="Login">
+      </div>
+      Not Registered? <a href="/register">Register</a>
+    </form>
+  </div>
